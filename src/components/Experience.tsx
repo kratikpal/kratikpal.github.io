@@ -4,39 +4,37 @@ import { Calendar, MapPin } from 'lucide-react';
 
 const experiences = [
   {
-    title: 'Senior Web Developer',
-    company: 'Company Name 1',
-    location: 'New York, NY',
-    period: 'Jan 2023 - Present',
-    description: [
-      'Led frontend development for multiple high-profile projects, increasing user engagement by 40%',
-      'Architected and implemented scalable React applications using TypeScript and Next.js',
-      'Mentored junior developers and conducted code reviews to ensure best practices',
-      'Collaborated with design team to implement responsive, accessible interfaces'
-    ]
-  },
-  {
-    title: 'Frontend Developer',
-    company: 'Company Name 2',
-    location: 'San Francisco, CA',
-    period: 'Jun 2020 - Dec 2022',
-    description: [
-      'Developed and maintained responsive web applications using React, Redux, and modern JavaScript',
-      'Implemented UI components using Tailwind CSS and Styled Components',
-      'Collaborated with backend developers to integrate RESTful APIs',
-      'Improved page load performance by 30% through code optimization'
-    ]
-  },
-  {
-    title: 'Web Developer Intern',
-    company: 'Company Name 3',
+    title: 'Software Developer Intern',
+    company: 'Prismberry Technologies',
     location: 'Remote',
-    period: 'Jan 2020 - May 2020',
+    period: 'February 2025 - Present',
     description: [
-      'Assisted in developing web applications using HTML, CSS, and JavaScript',
-      'Collaborated with senior developers to implement new features',
-      'Performed code reviews and bug fixes',
-      'Participated in daily stand-up meetings and sprint planning'
+      'Developed a REST API using Spring Boot and MongoDB to store data for library management systems',
+      'Used Spring Security with JWT tokens to implement token-based and role-based authentication',
+      'Used a cron job to send reminder emails to users to return their books before the due date'
+    ]
+  },
+  {
+    title: 'Flutter Developer Intern',
+    company: 'Divine Care',
+    location: 'Remote',
+    period: 'October 2024 - February 2025',
+    description: [
+      'Developed DivineCare app deployed on Android, iOS and web, resulting in a seamless multi-platform experience for users',
+      'Integrated Gumlet for secure video streaming alongside YouTube for a diverse range of content',
+      'Implemented OAuth 2.0 for Google login using Firebase and Spring Boot to enable secure authentication for users'
+    ]
+  },
+  {
+    title: 'Flutter Developer Intern',
+    company: 'Neonflake Enterprises',
+    location: 'Remote',
+    period: 'June 2024 - October 2024',
+    description: [
+      'Worked on a WhatsApp keyword tracking app using Flutter, enabling users to track specific keywords',
+      'Integrated Razor pay for handling in-app purchases, resulting in increased revenue by 30%',
+      'Implemented a robust KYC verification system for Cheminova Territory Manager App',
+      'Implemented an attendance system, allowing the organization to keep track of employee attendance'
     ]
   }
 ];

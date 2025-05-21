@@ -8,7 +8,7 @@ type Project = {
   description: string;
   image: string;
   technologies: string[];
-  demoLink: string;
+  demoLink?: string;
   githubLink: string;
   category: string[];
 };
@@ -16,52 +16,49 @@ type Project = {
 const projects: Project[] = [
   {
     id: 1,
-    title: 'E-Commerce Dashboard',
-    description: 'A responsive dashboard for managing e-commerce data with interactive charts and real-time updates.',
+    title: 'Online Compiler',
+    description: 'An online compiler supporting C++, Java, Python, and JavaScript, enabling users to compile code securely with Docker isolation.',
     image: 'https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Chart.js'],
-    demoLink: '#',
-    githubLink: '#',
-    category: ['frontend', 'react']
+    technologies: ['Node.js', 'React.js', 'Docker', 'REST API', 'AWS EC2', 'AWS Elastic Containers'],
+    githubLink: 'https://github.com/kratikpal',
+    category: ['fullstack', 'node']
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'A full-stack task management application with drag-and-drop functionality and team collaboration features.',
+    title: 'AudioVibe',
+    description: 'A music streaming app allowing users to navigate a library of 1 million+ tracks with seamless playback using Flutter and REST APIs.',
     image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
-    demoLink: '#',
-    githubLink: '#',
-    category: ['fullstack', 'react']
+    technologies: ['Dart', 'Flutter', 'Riverpod', 'REST API', 'Just Audio', 'Node.js', 'Express.js', 'JWT', 'MongoDB'],
+    githubLink: 'https://github.com/kratikpal',
+    category: ['mobile', 'flutter', 'fullstack']
   },
   {
     id: 3,
-    title: 'Weather App',
-    description: 'A weather application that fetches real-time weather data based on location with a clean, minimalist UI.',
+    title: 'DivineCare App',
+    description: 'A multi-platform app deployed on Android, iOS, and web with secure video streaming and OAuth 2.0 authentication.',
     image: 'https://images.pexels.com/photos/1261427/pexels-photo-1261427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['JavaScript', 'API Integration', 'CSS'],
+    technologies: ['Flutter', 'Firebase', 'Spring Boot', 'OAuth 2.0', 'Gumlet'],
     demoLink: '#',
-    githubLink: '#',
-    category: ['frontend', 'javascript']
+    githubLink: 'https://github.com/kratikpal',
+    category: ['mobile', 'flutter']
   },
   {
     id: 4,
-    title: 'Portfolio Website',
-    description: 'A modern, responsive portfolio website built with the latest web technologies.',
+    title: 'Library Management System',
+    description: 'A REST API built with Spring Boot and MongoDB for library data storage with JWT authentication and automated email reminders.',
     image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    demoLink: '#',
-    githubLink: '#',
-    category: ['frontend', 'react']
+    technologies: ['Spring Boot', 'MongoDB', 'JWT', 'REST API', 'Java'],
+    githubLink: 'https://github.com/kratikpal',
+    category: ['backend', 'java']
   }
 ];
 
 const filters = [
   { name: 'All', value: 'all' },
-  { name: 'Frontend', value: 'frontend' },
+  { name: 'Mobile', value: 'mobile' },
+  { name: 'Flutter', value: 'flutter' },
   { name: 'Fullstack', value: 'fullstack' },
-  { name: 'React', value: 'react' },
-  { name: 'JavaScript', value: 'javascript' }
+  { name: 'Backend', value: 'backend' }
 ];
 
 const Projects: React.FC = () => {
@@ -142,14 +139,16 @@ const Projects: React.FC = () => {
                 </div>
                 
                 <div className="flex gap-4">
-                  <a 
-                    href={project.demoLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-sm text-accent-400 hover:text-accent-300 transition-colors"
-                  >
-                    <ExternalLink size={16} /> Live Demo
-                  </a>
+                  {project.demoLink && (
+                    <a 
+                      href={project.demoLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-sm text-accent-400 hover:text-accent-300 transition-colors"
+                    >
+                      <ExternalLink size={16} /> Live Demo
+                    </a>
+                  )}
                   <a 
                     href={project.githubLink} 
                     target="_blank" 

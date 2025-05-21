@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { ArrowDown, Code, Github, Linkedin, Mail } from 'lucide-react';
 
 const Hero: React.FC = () => {
   return (
@@ -28,10 +28,10 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <h2 className="text-4xl md:text-6xl font-bold mb-4 leading-tight">
-              <span className="gradient-text">Your Name</span>
+              <span className="gradient-text">Kratikpal Singh Dodiya</span>
             </h2>
             <h3 className="text-3xl md:text-4xl font-bold text-gray-300 mb-6">
-              Web Developer & Designer
+              Software Engineer
             </h3>
           </motion.div>
           
@@ -41,8 +41,8 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <p className="text-lg text-gray-400 mb-8 max-w-2xl">
-              I build exceptional and accessible digital experiences for the web.
-              Specializing in modern frontend technologies and creative solutions.
+              Software Engineer with expertise in Data Structures and Algorithms,
+              specializing in mobile app development with Flutter and backend systems with Spring Boot.
             </p>
           </motion.div>
           
@@ -53,29 +53,38 @@ const Hero: React.FC = () => {
             className="flex flex-wrap gap-4"
           >
             <a
-              href="#"
+              href="mailto:kratikpal@gmail.com"
               className="px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-md transition-all duration-300 flex items-center gap-2"
             >
               <Mail size={18} />
               Contact Me
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/kratikpal"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-surface hover:bg-surface-light border border-gray-700 text-white rounded-md transition-all duration-300 flex items-center gap-2"
             >
               <Github size={18} />
-              GitHub
+              Github
             </a>
             <a
-              href="https://linkedin.com"
+              href="https://linkedin.com/in/kratikpal"
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 bg-surface hover:bg-surface-light border border-gray-700 text-white rounded-md transition-all duration-300 flex items-center gap-2"
             >
               <Linkedin size={18} />
               LinkedIn
+            </a>
+            <a
+              href="https://leetcode.com/kratikpal"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 bg-surface hover:bg-surface-light border border-gray-700 text-white rounded-md transition-all duration-300 flex items-center gap-2"
+            >
+              <Code size={18} />
+              LeetCode
             </a>
           </motion.div>
         </div>

@@ -3,18 +3,19 @@ import { motion } from 'framer-motion';
 import { Code, Lightbulb, Palette, GraduationCap } from 'lucide-react';
 
 const skills = [
-  'JavaScript (ES6+)',
-  'TypeScript',
-  'React',
-  'Next.js',
-  'CSS & SCSS',
-  'Tailwind CSS',
-  'Node.js',
-  'Express',
-  'MongoDB',
+  'C/C++',
+  'Dart',
+  'Java',
   'SQL',
-  'Git',
-  'Jest'
+  'Flutter',
+  'Spring Boot',
+  'RESTful APIs',
+  'Firebase',
+  'Riverpod',
+  'Provider',
+  'GetX',
+  'MySQL',
+  'MongoDB'
 ];
 
 const About: React.FC = () => {
@@ -40,23 +41,23 @@ const About: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <p className="text-gray-300 mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo ligula in nunc fermentum, quis elementum purus tincidunt. 
-              Nullam sed scelerisque purus, non faucibus eros. Etiam facilisis euismod nulla, ut condimentum nibh suscipit id.
+              I'm a Software Engineer with extensive expertise in Data Structures and Algorithms and a proven track record in developing
+              and deploying high-performance apps. I have demonstrated experience as a Software Developer intern at PrismBerry Technologies, creating efficient, user-centric apps.
             </p>
             
             <p className="text-gray-300 mb-6">
-              Cras pharetra dui eu placerat venenatis. Sed vel metus eros. Donec congue mauris massa, id pulvinar augue vehicula a. 
-              Curabitur ac lacus a tortor semper maximus. Ut consectetur sem ac elementum lobortis.
+              With a focus on mobile development using Flutter and backend technologies like Spring Boot, I'm passionate about building
+              robust and intuitive solutions that solve real-world problems.
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-8">
               <div className="flex items-center gap-3">
                 <Code size={20} className="text-accent-400" />
-                <span className="text-gray-300">Web Development</span>
+                <span className="text-gray-300">Mobile App Development</span>
               </div>
               <div className="flex items-center gap-3">
                 <Palette size={20} className="text-accent-400" />
-                <span className="text-gray-300">UI/UX Design</span>
+                <span className="text-gray-300">Backend Development</span>
               </div>
               <div className="flex items-center gap-3">
                 <Lightbulb size={20} className="text-accent-400" />
@@ -69,7 +70,7 @@ const About: React.FC = () => {
             </div>
 
             <p className="text-gray-300">
-              When I'm not coding, you'll find me hiking, reading, or exploring new coffee shops in the city.
+              I'm skilled in remote collaboration and delivering robust solutions. My goal is to create software that makes a positive impact on users' lives through efficient, intuitive design.
             </p>
           </motion.div>
           

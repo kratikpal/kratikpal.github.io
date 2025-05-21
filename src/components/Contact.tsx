@@ -32,8 +32,8 @@ const Contact: React.FC = () => {
             <h3 className="text-2xl font-bold text-white mb-6">Get In Touch</h3>
             <p className="text-gray-300 mb-8">
               I'm currently available for freelance work or full-time positions. 
-              If you have a project that needs help or a position that matches my skills, 
-              feel free to reach out.
+              If you have a project that needs help or a position that matches my skills in mobile development,
+              backend systems, or full-stack applications, feel free to reach out.
             </p>
             
             <div className="space-y-4">
@@ -43,8 +43,8 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">Email</p>
-                  <a href="mailto:example@example.com" className="text-accent-400 hover:text-accent-300 transition-colors">
-                    example@example.com
+                  <a href="mailto:kratikpal@gmail.com" className="text-accent-400 hover:text-accent-300 transition-colors">
+                    kratikpal@gmail.com
                   </a>
                 </div>
               </div>
@@ -55,8 +55,8 @@ const Contact: React.FC = () => {
                 </div>
                 <div>
                   <p className="text-gray-400 text-sm">LinkedIn</p>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-accent-400 hover:text-accent-300 transition-colors">
-                    linkedin.com/in/username
+                  <a href="https://linkedin.com/in/kratikpal" target="_blank" rel="noopener noreferrer" className="text-accent-400 hover:text-accent-300 transition-colors">
+                    linkedin.com/in/kratikpal
                   </a>
                 </div>
               </div>
@@ -66,8 +66,8 @@ const Contact: React.FC = () => {
                   <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-gray-400 text-sm">Location</p>
-                  <p className="text-white">San Francisco, CA</p>
+                  <p className="text-gray-400 text-sm">Phone</p>
+                  <p className="text-white">+91 9617579828</p>
                 </div>
               </div>
             </div>
@@ -105,6 +105,18 @@ const Contact: React.FC = () => {
               </div>
               
               <div className="mb-4">
+                <label htmlFor="subject" className="block text-gray-300 mb-2 text-sm">
+                  Subject
+                </label>
+                <input
+                  type="text"
+                  id="subject"
+                  className="w-full p-3 bg-surface-light border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  required
+                />
+              </div>
+              
+              <div className="mb-6">
                 <label htmlFor="message" className="block text-gray-300 mb-2 text-sm">
                   Message
                 </label>
@@ -118,10 +130,9 @@ const Contact: React.FC = () => {
               
               <button
                 type="submit"
-                className="w-full py-3 bg-primary-600 hover:bg-primary-700 text-white rounded-md transition-all duration-300 flex items-center justify-center gap-2"
+                className="w-full bg-accent-500 hover:bg-accent-600 text-white py-3 rounded-md font-medium flex items-center justify-center gap-2 transition-colors"
               >
-                <Send size={18} />
-                Send Message
+                Send Message <Send size={16} />
               </button>
             </form>
           </motion.div>
