@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
+const repositoryName = 'kratikpal.github.io'; 
+
 export default defineConfig({
   plugins: [react()],
   optimizeDeps: {
     exclude: ['lucide-react'],
   },
-  base: './' // This is needed for GitHub Pages deployment
+  base: `/${repositoryName}/`
 });
