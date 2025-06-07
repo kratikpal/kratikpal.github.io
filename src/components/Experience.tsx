@@ -1,98 +1,95 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { Calendar, MapPin } from 'lucide-react';
+import { Building, Calendar, ExternalLink, ChevronRight } from 'lucide-react';
+import { resumeData } from '../data/resume';
 
-const experiences = [
-  {
-    title: 'Software Developer Intern',
-    company: 'Prismberry Technologies',
-    location: 'Remote',
-    period: 'February 2025 - Present',
-    description: [
-      'Developed a REST API using Spring Boot and MongoDB to store data for library management systems',
-      'Used Spring Security with JWT tokens to implement token-based and role-based authentication',
-      'Used a cron job to send reminder emails to users to return their books before the due date'
-    ]
-  },
-  {
-    title: 'Flutter Developer Intern',
-    company: 'Divine Care',
-    location: 'Remote',
-    period: 'October 2024 - February 2025',
-    description: [
-      'Developed DivineCare app deployed on Android, iOS and web, resulting in a seamless multi-platform experience for users',
-      'Integrated Gumlet for secure video streaming alongside YouTube for a diverse range of content',
-      'Implemented OAuth 2.0 for Google login using Firebase and Spring Boot to enable secure authentication for users'
-    ]
-  },
-  {
-    title: 'Flutter Developer Intern',
-    company: 'Neonflake Enterprises',
-    location: 'Remote',
-    period: 'June 2024 - October 2024',
-    description: [
-      'Worked on a WhatsApp keyword tracking app using Flutter, enabling users to track specific keywords',
-      'Integrated Razor pay for handling in-app purchases, resulting in increased revenue by 30%',
-      'Implemented a robust KYC verification system for Cheminova Territory Manager App',
-      'Implemented an attendance system, allowing the organization to keep track of employee attendance'
-    ]
-  }
-];
-
-const Experience: React.FC = () => {
+const Experience = () => {
   return (
-    <section id="experience" className="py-20">
-      <div className="section-container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Experience
-        </motion.h2>
-        
-        <div className="space-y-12">
-          {experiences.map((exp, index) => (
-            <motion.div
+    <section id="experience" className="py-20 bg-gray-900 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-green-900/10 to-blue-900/10"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Work <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Experience</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-400 mx-auto mb-6"></div>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            My journey as a software developer across different companies and projects
+          </p>
+        </div>
+
+        <div className="space-y-8">
+          {resumeData.experience.map((exp, index) => (
+            <div
               key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative pl-8 md:pl-0"
+              className="bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden group animate-fade-in-up"
+              style={{ animationDelay: `${index * 200}ms` }}
             >
-              <div className="md:grid md:grid-cols-12 md:gap-4 items-start">
-                <div className="md:col-span-3 text-gray-400 mb-2 md:mb-0 flex flex-col space-y-1">
-                  <div className="flex items-center">
-                    <Calendar size={16} className="mr-2 text-accent-400" />
-                    <span>{exp.period}</span>
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin size={16} className="mr-2 text-accent-400" />
-                    <span>{exp.location}</span>
+              <div className="p-8">
+                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
+                  <div className="flex items-start space-x-4 mb-4 lg:mb-0">
+                    <div className="p-3 bg-gradient-to-br from-green-500 to-blue-600 rounded-lg">
+                      <Building className="text-white" size={24} />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors duration-300">
+                        {exp.company}
+                      </h3>
+                      <p className="text-lg text-blue-400 font-semibold">{exp.role}</p>
+                      <div className="flex items-center text-gray-400 mt-2">
+                        <Calendar size={16} className="mr-2" />
+                        <span>{exp.duration}</span>
+                        {exp.link && (
+                          <a
+                            href={exp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="ml-4 inline-flex items-center text-green-400 hover:text-green-300 transition-colors duration-200"
+                          >
+                            <ExternalLink size={16} className="mr-1" />
+                            Live Project
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
-                
-                <div className="md:col-span-9">
-                  <h3 className="text-xl font-bold text-white">{exp.title}</h3>
-                  <p className="text-primary-400 font-medium mb-4">{exp.company}</p>
-                  
-                  <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                    {exp.description.map((item, i) => (
-                      <li key={i}>{item}</li>
+
+                {/* Regular achievements */}
+                {exp.achievements && (
+                  <div className="space-y-3 mb-6">
+                    {exp.achievements.map((achievement, achieveIndex) => (
+                      <div key={achieveIndex} className="flex items-start space-x-3">
+                        <ChevronRight className="text-green-400 mt-1 flex-shrink-0" size={16} />
+                        <p className="text-gray-300 leading-relaxed">{achievement}</p>
+                      </div>
                     ))}
-                  </ul>
-                </div>
+                  </div>
+                )}
+
+                {/* Project-based achievements */}
+                {exp.projects && (
+                  <div className="space-y-6">
+                    {exp.projects.map((project, projectIndex) => (
+                      <div key={projectIndex} className="border-l-2 border-blue-500/30 pl-6">
+                        <h4 className="text-lg font-semibold text-blue-400 mb-3">{project.name}</h4>
+                        <div className="space-y-2">
+                          {project.achievements.map((achievement, achieveIndex) => (
+                            <div key={achieveIndex} className="flex items-start space-x-3">
+                              <ChevronRight className="text-green-400 mt-1 flex-shrink-0" size={14} />
+                              <p className="text-gray-300 text-sm leading-relaxed">{achievement}</p>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-              
-              {/* Timeline indicator */}
-              <div className="absolute left-0 top-1 w-4 h-4 bg-primary-500 rounded-full md:hidden"></div>
-              {index < experiences.length - 1 && (
-                <div className="absolute left-2 top-5 h-full w-0.5 bg-gray-700 md:hidden"></div>
-              )}
-            </motion.div>
+
+              {/* Gradient overlay on hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            </div>
           ))}
         </div>
       </div>

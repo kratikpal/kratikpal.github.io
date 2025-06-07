@@ -1,166 +1,147 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, Github } from 'lucide-react';
+import React from 'react';
+import { Github, ExternalLink, Code, Database, Smartphone, Brain, Globe, Server } from 'lucide-react';
+import { resumeData } from '../data/resume';
 
-type Project = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  technologies: string[];
-  demoLink?: string;
-  githubLink: string;
-  category: string[];
-};
+const Projects = () => {
+  const getProjectIcon = (technologies: string[]) => {
+    if (technologies.some(tech => tech.toLowerCase().includes('flutter') || tech.toLowerCase().includes('dart'))) {
+      return Smartphone;
+    } else if (technologies.some(tech => tech.toLowerCase().includes('python') || tech.toLowerCase().includes('scikit'))) {
+      return Brain;
+    } else if (technologies.some(tech => tech.toLowerCase().includes('spring boot') || tech.toLowerCase().includes('java'))) {
+      return Server;
+    } else if (technologies.some(tech => tech.toLowerCase().includes('database') || tech.toLowerCase().includes('mongodb'))) {
+      return Database;
+    } else if (technologies.some(tech => tech.toLowerCase().includes('azure') || tech.toLowerCase().includes('aws'))) {
+      return Globe;
+    }
+    return Code;
+  };
 
-const projects: Project[] = [
-  {
-    id: 1,
-    title: 'Online Compiler',
-    description: 'An online compiler supporting C++, Java, Python, and JavaScript, enabling users to compile code securely with Docker isolation.',
-    image: 'https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['Node.js', 'React.js', 'Docker', 'REST API', 'AWS EC2', 'AWS Elastic Containers'],
-    githubLink: 'https://github.com/kratikpal',
-    category: ['fullstack', 'node']
-  },
-  {
-    id: 2,
-    title: 'AudioVibe',
-    description: 'A music streaming app allowing users to navigate a library of 1 million+ tracks with seamless playback using Flutter and REST APIs.',
-    image: 'https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['Dart', 'Flutter', 'Riverpod', 'REST API', 'Just Audio', 'Node.js', 'Express.js', 'JWT', 'MongoDB'],
-    githubLink: 'https://github.com/kratikpal',
-    category: ['mobile', 'flutter', 'fullstack']
-  },
-  {
-    id: 3,
-    title: 'DivineCare App',
-    description: 'A multi-platform app deployed on Android, iOS, and web with secure video streaming and OAuth 2.0 authentication.',
-    image: 'https://images.pexels.com/photos/1261427/pexels-photo-1261427.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['Flutter', 'Firebase', 'Spring Boot', 'OAuth 2.0', 'Gumlet'],
-    demoLink: '#',
-    githubLink: 'https://github.com/kratikpal',
-    category: ['mobile', 'flutter']
-  },
-  {
-    id: 4,
-    title: 'Library Management System',
-    description: 'A REST API built with Spring Boot and MongoDB for library data storage with JWT authentication and automated email reminders.',
-    image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2',
-    technologies: ['Spring Boot', 'MongoDB', 'JWT', 'REST API', 'Java'],
-    githubLink: 'https://github.com/kratikpal',
-    category: ['backend', 'java']
-  }
-];
-
-const filters = [
-  { name: 'All', value: 'all' },
-  { name: 'Mobile', value: 'mobile' },
-  { name: 'Flutter', value: 'flutter' },
-  { name: 'Fullstack', value: 'fullstack' },
-  { name: 'Backend', value: 'backend' }
-];
-
-const Projects: React.FC = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
-
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category.includes(activeFilter));
+  const getProjectColor = (index: number) => {
+    const colors = [
+      'from-blue-500 to-purple-600',
+      'from-green-500 to-teal-600', 
+      'from-orange-500 to-red-600',
+      'from-purple-500 to-pink-600',
+      'from-teal-500 to-blue-600',
+      'from-red-500 to-orange-600'
+    ];
+    return colors[index % colors.length];
+  };
 
   return (
-    <section id="projects" className="bg-surface py-20">
-      <div className="section-container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Projects
-        </motion.h2>
-        
-        <motion.div 
-          className="flex flex-wrap gap-2 mb-10"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {filters.map((filter) => (
-            <button
-              key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
-              className={`px-4 py-2 rounded-full text-sm transition-colors duration-300 ${
-                activeFilter === filter.value
-                  ? 'bg-primary-600 text-white'
-                  : 'bg-surface-light text-gray-400 hover:bg-gray-700'
-              }`}
-            >
-              {filter.name}
-            </button>
-          ))}
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
-              className="bg-surface-light rounded-xl overflow-hidden shadow-lg"
-            >
-              <div className="h-48 overflow-hidden relative">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-              </div>
-              
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
-                <p className="text-gray-400 mb-4">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech, i) => (
-                    <span 
-                      key={i} 
-                      className="px-3 py-1 text-xs bg-background text-primary-400 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+    <section id="projects" className="py-20 bg-gray-800 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-900/10 to-orange-900/10"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Featured <span className="bg-gradient-to-r from-purple-400 to-orange-400 bg-clip-text text-transparent">Projects</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-orange-400 mx-auto mb-6"></div>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Showcasing some of my recent work that demonstrates my technical skills and problem-solving abilities
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {resumeData.projects.map((project, index) => {
+            const IconComponent = getProjectIcon(project.technologies);
+            const gradientColor = getProjectColor(index);
+            return (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-purple-500/50 transition-all duration-300 hover:scale-[1.02] group overflow-hidden animate-fade-in-up"
+                style={{ animationDelay: `${index * 200}ms` }}
+              >
+                <div className="p-8">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="flex items-center space-x-4">
+                      <div className={`p-3 bg-gradient-to-br ${gradientColor} rounded-lg`}>
+                        <IconComponent className="text-white" size={24} />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-bold text-white group-hover:text-purple-400 transition-colors duration-300">
+                          {project.name}
+                        </h3>
+                        {project.liveLink && (
+                          <a
+                            href={project.liveLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center text-green-400 hover:text-green-300 transition-colors duration-200 text-sm mt-1"
+                          >
+                            <Globe size={14} className="mr-1" />
+                            Live Demo
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                    
+                    <div className="flex space-x-3">
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2 bg-gray-700/50 rounded-lg text-gray-400 hover:text-white hover:bg-gray-600/50 transition-all duration-200 hover:scale-110"
+                      >
+                        <Github size={20} />
+                      </a>
+                      {project.liveLink && (
+                        <a
+                          href={project.liveLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 bg-gray-700/50 rounded-lg text-gray-400 hover:text-green-400 hover:bg-gray-600/50 transition-all duration-200 hover:scale-110"
+                        >
+                          <ExternalLink size={20} />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mb-6">
+                    {project.description.map((desc, descIndex) => (
+                      <div key={descIndex} className="flex items-start space-x-3">
+                        <div className="w-2 h-2 bg-purple-400 rounded-full mt-2 flex-shrink-0"></div>
+                        <p className="text-gray-300 leading-relaxed">{desc}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="border-t border-gray-700 pt-6">
+                    <p className="text-sm text-gray-400 mb-3">Technologies Used:</p>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 bg-gradient-to-r from-purple-500/20 to-orange-500/20 text-purple-300 text-sm rounded-full border border-purple-500/30 hover:border-purple-400/50 transition-all duration-200 hover:scale-105"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="flex gap-4">
-                  {project.demoLink && (
-                    <a 
-                      href={project.demoLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-sm text-accent-400 hover:text-accent-300 transition-colors"
-                    >
-                      <ExternalLink size={16} /> Live Demo
-                    </a>
-                  )}
-                  <a 
-                    href={project.githubLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 text-sm text-accent-400 hover:text-accent-300 transition-colors"
-                  >
-                    <Github size={16} /> Source Code
-                  </a>
-                </div>
+
+                {/* Gradient overlay on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${gradientColor} opacity-0 group-hover:opacity-5 transition-opacity duration-300 pointer-events-none`}></div>
               </div>
-            </motion.div>
-          ))}
+            );
+          })}
+        </div>
+
+        <div className="text-center mt-12">
+          <a
+            href={resumeData.personal.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-orange-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 hover:scale-105"
+          >
+            <Github size={20} />
+            <span>View All Projects</span>
+          </a>
         </div>
       </div>
     </section>
