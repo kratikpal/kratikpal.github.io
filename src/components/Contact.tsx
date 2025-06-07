@@ -1,141 +1,172 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Mail, Linkedin, MapPin, Send } from 'lucide-react';
+import React, { useState } from 'react';
+import { Mail, Phone, MapPin, Github, Linkedin, Send, MessageCircle } from 'lucide-react';
+import { resumeData } from '../data/resume';
 
-const Contact: React.FC = () => {
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // This would be replaced with actual form submission logic
-    alert('Form submitted! In a real app, this would send your message.');
+    // Handle form submission - for now, we'll create a mailto link
+    const subject = `Portfolio Contact from ${formData.name}`;
+    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
+    const mailtoLink = `mailto:${resumeData.personal.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
   };
 
   return (
-    <section id="contact" className="py-20">
-      <div className="section-container">
-        <motion.h2 
-          className="section-title"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          Contact Me
-        </motion.h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="text-2xl font-bold text-white mb-6">Get In Touch</h3>
-            <p className="text-gray-300 mb-8">
-              I'm currently available for freelance work or full-time positions. 
-              If you have a project that needs help or a position that matches my skills in mobile development,
-              backend systems, or full-stack applications, feel free to reach out.
-            </p>
-            
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-primary-800 rounded-full flex items-center justify-center text-primary-200">
-                  <Mail size={18} />
+    <section id="contact" className="py-20 bg-gray-800 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-teal-900/10 to-purple-900/10"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Get In <span className="bg-gradient-to-r from-teal-400 to-purple-400 bg-clip-text text-transparent">Touch</span>
+          </h2>
+          <div className="w-24 h-1 bg-gradient-to-r from-teal-400 to-purple-400 mx-auto mb-6"></div>
+          <p className="text-gray-400 max-w-2xl mx-auto">
+            Ready to start your next project? Let's collaborate and build something amazing together.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <div className="space-y-8">
+            <div className="bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
+                <MessageCircle className="text-teal-400 mr-3" size={24} />
+                Let's Connect
+              </h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="p-3 bg-gradient-to-br from-teal-500 to-blue-600 rounded-lg">
+                    <Mail className="text-white" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-sm">Email</p>
+                    <a 
+                      href={`mailto:${resumeData.personal.email}`}
+                      className="text-white hover:text-teal-400 transition-colors duration-200"
+                    >
+                      {resumeData.personal.email}
+                    </a>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Email</p>
-                  <a href="mailto:kratikpal@gmail.com" className="text-accent-400 hover:text-accent-300 transition-colors">
-                    kratikpal@gmail.com
-                  </a>
+
+                <div className="flex items-center space-x-4">
+                  <div className="p-3 bg-gradient-to-br from-green-500 to-teal-600 rounded-lg">
+                    <Phone className="text-white" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-gray-400 text-sm">Phone</p>
+                    <a 
+                      href={`tel:${resumeData.personal.phone}`}
+                      className="text-white hover:text-green-400 transition-colors duration-200"
+                    >
+                      {resumeData.personal.phone}
+                    </a>
+                  </div>
                 </div>
               </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-primary-800 rounded-full flex items-center justify-center text-primary-200">
-                  <Linkedin size={18} />
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">LinkedIn</p>
-                  <a href="https://linkedin.com/in/kratikpal" target="_blank" rel="noopener noreferrer" className="text-accent-400 hover:text-accent-300 transition-colors">
-                    linkedin.com/in/kratikpal
+
+              <div className="mt-8 pt-8 border-t border-gray-700">
+                <h4 className="text-lg font-semibold text-white mb-4">Social Links</h4>
+                <div className="flex space-x-4">
+                  <a
+                    href={resumeData.personal.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-700/50 rounded-lg text-gray-400 hover:text-white hover:bg-gray-600/50 transition-all duration-200 hover:scale-110"
+                  >
+                    <Github size={20} />
                   </a>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-primary-800 rounded-full flex items-center justify-center text-primary-200">
-                  <MapPin size={18} />
-                </div>
-                <div>
-                  <p className="text-gray-400 text-sm">Phone</p>
-                  <p className="text-white">+91 9617579828</p>
+                  <a
+                    href={resumeData.personal.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 bg-gray-700/50 rounded-lg text-gray-400 hover:text-blue-400 hover:bg-gray-600/50 transition-all duration-200 hover:scale-110"
+                  >
+                    <Linkedin size={20} />
+                  </a>
                 </div>
               </div>
             </div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            <form onSubmit={handleSubmit} className="bg-surface p-6 rounded-xl">
-              <div className="mb-4">
-                <label htmlFor="name" className="block text-gray-300 mb-2 text-sm">
-                  Name
+          </div>
+
+          {/* Contact Form */}
+          <div className="bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-700">
+            <h3 className="text-2xl font-bold text-white mb-6">Send Message</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Your Name
                 </label>
                 <input
                   type="text"
                   id="name"
-                  className="w-full p-3 bg-surface-light border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter your name"
                 />
               </div>
-              
-              <div className="mb-4">
-                <label htmlFor="email" className="block text-gray-300 mb-2 text-sm">
-                  Email
+
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Your Email
                 </label>
                 <input
                   type="email"
                   id="email"
-                  className="w-full p-3 bg-surface-light border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200"
+                  placeholder="Enter your email"
                 />
               </div>
-              
-              <div className="mb-4">
-                <label htmlFor="subject" className="block text-gray-300 mb-2 text-sm">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  id="subject"
-                  className="w-full p-3 bg-surface-light border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
-                  required
-                />
-              </div>
-              
-              <div className="mb-6">
-                <label htmlFor="message" className="block text-gray-300 mb-2 text-sm">
+
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
                   Message
                 </label>
                 <textarea
                   id="message"
-                  rows={5}
-                  className="w-full p-3 bg-surface-light border border-gray-700 rounded-md text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   required
-                ></textarea>
+                  rows={5}
+                  className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg text-white focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 resize-none"
+                  placeholder="Tell me about your project..."
+                />
               </div>
-              
+
               <button
                 type="submit"
-                className="w-full bg-accent-500 hover:bg-accent-600 text-white py-3 rounded-md font-medium flex items-center justify-center gap-2 transition-colors"
+                className="w-full bg-gradient-to-r from-teal-500 to-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg hover:shadow-teal-500/25 transition-all duration-300 hover:scale-105 flex items-center justify-center space-x-2"
               >
-                Send Message <Send size={16} />
+                <Send size={20} />
+                <span>Send Message</span>
               </button>
             </form>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
