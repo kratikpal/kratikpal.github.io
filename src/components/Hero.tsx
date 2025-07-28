@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import { ArrowDown, Code, Database, Smartphone } from 'lucide-react';
-import { resumeData } from '../data/resume';
+import React, { useEffect, useState } from "react";
+import { ArrowDown, Code, Database, Smartphone } from "lucide-react";
+import { resumeData } from "../data/resume";
 
 const Hero = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
-  const roles = ['Software Engineer', 'Flutter Developer', 'Backend Developer', 'Problem Solver'];
+  const roles = [
+    "Software Engineer",
+    "Flutter Developer",
+    "Backend Developer",
+    "Problem Solver",
+  ];
 
   useEffect(() => {
     const handleTyping = () => {
@@ -25,7 +30,7 @@ const Hero = () => {
 
       if (!isDeleting && text === fullText) {
         setTimeout(() => setIsDeleting(true), 500);
-      } else if (isDeleting && text === '') {
+      } else if (isDeleting && text === "") {
         setIsDeleting(false);
         setLoopNum(loopNum + 1);
       }
@@ -47,12 +52,12 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <div className="animate-fade-in-up">
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-            Hi, I'm{' '}
+            Hi, I'm{" "}
             <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
               Kratikpal
             </span>
           </h1>
-          
+
           <div className="text-2xl md:text-4xl text-gray-300 mb-8 h-12">
             <span className="border-r-2 border-blue-400 pr-1 animate-pulse">
               {text}
@@ -60,7 +65,7 @@ const Hero = () => {
           </div>
 
           <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed">
-            {resumeData.summary}
+            {resumeData.shortSummary}
           </p>
 
           <div className="flex flex-wrap justify-center gap-6 mb-12">
