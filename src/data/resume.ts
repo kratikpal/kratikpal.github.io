@@ -8,7 +8,8 @@ export const resumeData = {
     leetcode: "https://leetcode.com/kratikpal",
     github: "https://github.com/kratikpal",
   },
-  shortSummary:"A full-stack developer crafting scalable mobile and web applications. I specialize in Flutter and Java/Spring Boot, with a proven history of enhancing user engagement and delivering significant operational improvements. I build products that are robust, efficient, and user-centric.",
+  shortSummary:
+    "A full-stack developer crafting scalable mobile and web applications. I specialize in Flutter and Java/Spring Boot, with a proven history of enhancing user engagement and delivering significant operational improvements. I build products that are robust, efficient, and user-centric.",
   summary:
     "I am a versatile software developer focused on architecting and building end-to-end solutions. My goal is to create applications that are not only scalable and secure but also provide an intuitive and seamless user experience.\nWith a strong foundation in mobile development with Flutter and backend systems using Java/Spring Boot and Node.js, I enjoy tackling every part of the development lifecycle. I have experience designing and implementing RESTful APIs, engineering role-based access controls, and deploying applications on cloud platforms like AWS and Azure. I'm proud to have delivered features that boosted user compliance by 40% and reached thousands of daily users.\nI'm driven by the challenge of solving complex problems with clean, efficient code. Let's discuss how we can build something great together.",
 
@@ -35,7 +36,7 @@ export const resumeData = {
       "Operating System",
       "Machine Learning",
     ],
-    Tools: ["Git", "GitHub", "ChatGPT", "Microsoft Azure", "Razorpay"],
+    Tools: ["Git", "GitHub", "ChatGPT", "Microsoft Azure", "Razorpay", "N8N"],
     "Soft Skills": [
       "Effective Collaborator",
       "Rapid Learner",
@@ -98,7 +99,7 @@ export const resumeData = {
       institution: "University of Delhi",
       degree: "Master of Computer Applications",
       duration: "September 2023 - July 2025",
-      score: "CGPA: 6.9",
+      score: "CGPA: 7.0",
     },
     {
       institution: "Holkar Science College",
@@ -109,6 +110,24 @@ export const resumeData = {
   ],
 
   projects: [
+    {
+      name: "Intelligent Job Application Automation System",
+      technologies: [
+        "n8n Workflow Automation",
+        "Google Gemini AI",
+        "LangChain",
+        "Gmail API",
+        "PDF Processing",
+      ],
+      description: [
+        "Created a fully automated system that slashed the time spent on a single job application from over 2 hours to just 15 minutes.",
+        "Used Google's Gemini AI to read my resume, find the best-fitting jobs, and write personalized emails to recruiters for each application.",
+        "Increased the number of job applications I could send by 300% by building an intelligent pipeline that handled everything automatically.",
+        "Developed a smart web scraper for LinkedIn that boosted the quality of job leads by 40% by filtering out irrelevant listings.",
+        "Built an AI-powered career assistant that analyzed job descriptions to ensure my applications were highly targeted and relevant.",
+        "Automated the entire tracking process by connecting to the Google Sheets API, creating a real-time log of every application sent.",
+      ],
+    },
     {
       name: "Quiz App",
       github: "https://github.com/kratikpal/quiz-app",
@@ -133,18 +152,19 @@ export const resumeData = {
       name: "Online Compiler",
       github: "https://github.com/kratikpal/online_compiler",
       technologies: [
-        "Node.js",
-        "React.js",
+        "Java",
+        "Spring Boot",
         "Docker",
         "REST API",
         "AWS EC2",
-        "ECS",
+        "AWS Elastic Containers",
       ],
       description: [
-        "Supported compilation for C++, Java, Python, and JavaScript",
-        "Used Docker containers to isolate code execution",
-        "Built REST API in Node.js for handling code execution requests",
-        "Deployed using AWS EC2 and ECS for scalable performance",
+        "Developed an online compiler using Spring Boot, enabling real-time code compilation for C++, Java, and Python.",
+        "Implemented RESTful APIs and microservices architecture for seamless flow between frontend and backend.",
+        "Designed and deployed scalable services using Docker and Eureka Server for service discovery, improving system reliability and horizontal scalability.",
+        "Deployed on AWS EC2 with AWS Elastic Container Service (ECS) to leverage automated scaling.",
+        "Leveraged Spring Cloud components (Eureka Server, API Gateway) to implement service discovery and centralized routing, enabling seamless communication between microservices",
       ],
     },
     {
