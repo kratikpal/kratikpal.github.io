@@ -1,20 +1,54 @@
-import React from 'react';
-import { Building, Calendar, ExternalLink, ChevronRight } from 'lucide-react';
-import { resumeData } from '../data/resume';
+import { useState } from "react";
+import { Building, Calendar, ExternalLink, ChevronRight } from "lucide-react";
+import { resumeData } from "../data/resume";
 
 const Experience = () => {
+  const [expandedExperiences, setExpandedExperiences] = useState<Set<number>>(
+    new Set()
+  );
+  const [expandedProjects, setExpandedProjects] = useState<Set<string>>(
+    new Set()
+  );
+
+  const toggleExperienceExpansion = (index: number) => {
+    const newExpanded = new Set(expandedExperiences);
+    if (newExpanded.has(index)) {
+      newExpanded.delete(index);
+    } else {
+      newExpanded.add(index);
+    }
+    setExpandedExperiences(newExpanded);
+  };
+
+  const toggleProjectExpansion = (expIndex: number, projectIndex: number) => {
+    const key = `${expIndex}-${projectIndex}`;
+    const newExpanded = new Set(expandedProjects);
+    if (newExpanded.has(key)) {
+      newExpanded.delete(key);
+    } else {
+      newExpanded.add(key);
+    }
+    setExpandedProjects(newExpanded);
+  };
   return (
-    <section id="experience" className="py-20 bg-gray-900 relative overflow-hidden">
+    <section
+      id="experience"
+      className="py-20 bg-gray-900 relative overflow-hidden"
+    >
       <div className="absolute inset-0 bg-gradient-to-br from-green-900/10 to-blue-900/10"></div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Work <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">Experience</span>
+            Work{" "}
+            <span className="bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+              Experience
+            </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-green-400 to-blue-400 mx-auto mb-6"></div>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            My journey as a software developer across different companies and projects
+            My journey as a software developer across different companies and
+            projects
           </p>
         </div>
 
@@ -35,7 +69,9 @@ const Experience = () => {
                       <h3 className="text-2xl font-bold text-white group-hover:text-green-400 transition-colors duration-300">
                         {exp.company}
                       </h3>
-                      <p className="text-lg text-blue-400 font-semibold">{exp.role}</p>
+                      <p className="text-lg text-blue-400 font-semibold">
+                        {exp.role}
+                      </p>
                       <div className="flex items-center text-gray-400 mt-2">
                         <Calendar size={16} className="mr-2" />
                         <span>{exp.duration}</span>
@@ -58,31 +94,112 @@ const Experience = () => {
                 {/* Regular achievements */}
                 {exp.achievements && (
                   <div className="space-y-3 mb-6">
-                    {exp.achievements.map((achievement, achieveIndex) => (
-                      <div key={achieveIndex} className="flex items-start space-x-3">
-                        <ChevronRight className="text-green-400 mt-1 flex-shrink-0" size={16} />
-                        <p className="text-gray-300 leading-relaxed">{achievement}</p>
-                      </div>
-                    ))}
+                    {exp.achievements
+                      .slice(
+                        0,
+                        expandedExperiences.has(index)
+                          ? exp.achievements.length
+                          : 5
+                      )
+                      .map((achievement, achieveIndex) => (
+                        <div
+                          key={achieveIndex}
+                          className="flex items-start space-x-3"
+                        >
+                          <ChevronRight
+                            className="text-green-400 mt-1 flex-shrink-0"
+                            size={16}
+                          />
+                          <p className="text-gray-300 leading-relaxed">
+                            {achievement}
+                          </p>
+                        </div>
+                      ))}
+                    {exp.achievements.length > 5 && (
+                      <button
+                        onClick={() => toggleExperienceExpansion(index)}
+                        className="inline-flex items-center space-x-2 text-green-400 hover:text-green-300 transition-colors duration-200 font-medium mt-3"
+                      >
+                        <span>
+                          {expandedExperiences.has(index)
+                            ? "Show Less"
+                            : `Read More (${exp.achievements.length - 5} more)`}
+                        </span>
+                        <ChevronRight
+                          className={`transform transition-transform duration-200 ${
+                            expandedExperiences.has(index) ? "rotate-90" : ""
+                          }`}
+                          size={16}
+                        />
+                      </button>
+                    )}
                   </div>
                 )}
 
                 {/* Project-based achievements */}
                 {exp.projects && (
                   <div className="space-y-6">
-                    {exp.projects.map((project, projectIndex) => (
-                      <div key={projectIndex} className="border-l-2 border-blue-500/30 pl-6">
-                        <h4 className="text-lg font-semibold text-blue-400 mb-3">{project.name}</h4>
-                        <div className="space-y-2">
-                          {project.achievements.map((achievement, achieveIndex) => (
-                            <div key={achieveIndex} className="flex items-start space-x-3">
-                              <ChevronRight className="text-green-400 mt-1 flex-shrink-0" size={14} />
-                              <p className="text-gray-300 text-sm leading-relaxed">{achievement}</p>
-                            </div>
-                          ))}
+                    {exp.projects.map((project, projectIndex) => {
+                      const projectKey = `${index}-${projectIndex}`;
+                      const isProjectExpanded =
+                        expandedProjects.has(projectKey);
+
+                      return (
+                        <div
+                          key={projectIndex}
+                          className="border-l-2 border-blue-500/30 pl-6"
+                        >
+                          <h4 className="text-lg font-semibold text-blue-400 mb-3">
+                            {project.name}
+                          </h4>
+                          <div className="space-y-2">
+                            {project.achievements
+                              .slice(
+                                0,
+                                isProjectExpanded
+                                  ? project.achievements.length
+                                  : 5
+                              )
+                              .map((achievement, achieveIndex) => (
+                                <div
+                                  key={achieveIndex}
+                                  className="flex items-start space-x-3"
+                                >
+                                  <ChevronRight
+                                    className="text-green-400 mt-1 flex-shrink-0"
+                                    size={14}
+                                  />
+                                  <p className="text-gray-300 text-sm leading-relaxed">
+                                    {achievement}
+                                  </p>
+                                </div>
+                              ))}
+                            {project.achievements.length > 5 && (
+                              <button
+                                onClick={() =>
+                                  toggleProjectExpansion(index, projectIndex)
+                                }
+                                className="inline-flex items-center space-x-2 text-green-400 hover:text-green-300 transition-colors duration-200 font-medium mt-3"
+                              >
+                                <span>
+                                  {isProjectExpanded
+                                    ? "Show Less"
+                                    : `Read More (${
+                                        project.achievements.length - 5
+                                      } more)`}
+                                </span>
+                                <ChevronRight
+                                  className={`transform transition-transform duration-200 ${
+                                    isProjectExpanded ? "rotate-90" : ""
+                                  }`}
+                                  size={14}
+                                />
+                              </button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
