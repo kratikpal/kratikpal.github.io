@@ -127,7 +127,9 @@ const Experience = () => {
                         </span>
                         <ChevronRight
                           className={`transform transition-transform duration-200 ${
-                            expandedExperiences.has(index) ? "rotate-90" : ""
+                            expandedExperiences.has(index)
+                              ? "-rotate-90"
+                              : "rotate-90"
                           }`}
                           size={16}
                         />
@@ -190,7 +192,9 @@ const Experience = () => {
                                 </span>
                                 <ChevronRight
                                   className={`transform transition-transform duration-200 ${
-                                    isProjectExpanded ? "rotate-90" : ""
+                                    isProjectExpanded
+                                      ? "-rotate-90"
+                                      : "rotate-90"
                                   }`}
                                   size={14}
                                 />
