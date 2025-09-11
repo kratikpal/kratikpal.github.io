@@ -12,8 +12,23 @@ const Experience = () => {
 
   const toggleExperienceExpansion = (index: number) => {
     const newExpanded = new Set(expandedExperiences);
-    if (newExpanded.has(index)) {
+    const wasExpanded = newExpanded.has(index);
+
+    if (wasExpanded) {
       newExpanded.delete(index);
+      // Scroll to the experience card when collapsing
+      setTimeout(() => {
+        const experienceCard = document.querySelector(
+          `[data-experience-index="${index}"]`
+        );
+        if (experienceCard) {
+          experienceCard.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+          });
+        }
+      }, 100);
     } else {
       newExpanded.add(index);
     }
@@ -23,8 +38,23 @@ const Experience = () => {
   const toggleProjectExpansion = (expIndex: number, projectIndex: number) => {
     const key = `${expIndex}-${projectIndex}`;
     const newExpanded = new Set(expandedProjects);
-    if (newExpanded.has(key)) {
+    const wasExpanded = newExpanded.has(key);
+
+    if (wasExpanded) {
       newExpanded.delete(key);
+      // Scroll to the experience card when collapsing project
+      setTimeout(() => {
+        const experienceCard = document.querySelector(
+          `[data-experience-index="${expIndex}"]`
+        );
+        if (experienceCard) {
+          experienceCard.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+          });
+        }
+      }, 100);
     } else {
       newExpanded.add(key);
     }
@@ -56,6 +86,7 @@ const Experience = () => {
           {resumeData.experience.map((exp, index) => (
             <div
               key={index}
+              data-experience-index={index}
               className="bg-gradient-to-br from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-2xl border border-gray-700 hover:border-green-500/50 transition-all duration-300 hover:scale-[1.02] overflow-hidden group animate-fade-in-up"
               style={{ animationDelay: `${index * 200}ms` }}
             >
