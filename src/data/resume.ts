@@ -51,7 +51,12 @@ export const resumeData = {
       role: "Software Developer Intern",
       duration: "February 2025 - Present",
       achievements: [
-        "Architected and developed a comprehensive full-stack Performance Management System using Node.js, Express.js, and PostgreSQL with Sequelize ORM, supporting 15+ entity relationships and 25+ RESTful API endpoints, achieving 99.9% system uptime.",
+        "Designed and developed high-quality backend services, deploying over 50 RESTful APIs using Java and Spring Boot.",
+        "Implemented an event-driven architecture using Apache Kafka to manage real-time stream processing of live CCTV.",
+        "Secured 100% of APIs for 8+ user levels by implementing a robust RBAC framework with Spring Security and JWT.",
+        "Integrated Redis caching strategies to store and rapidly deliver live AI-driven analysis of camera feeds such as crowd density tracking and restricted area detection, significantly improving system responsiveness and performance.",
+        "Wrote comprehensive unit and integration tests using JUnit and Mockito to ensure 99.5% application reliability.",
+        "Architected and developed a comprehensive full-stack Performance Management System using Java, Spring Boot, and PostgreSQL, supporting 15+ entity relationships and 25+ RESTful API endpoints, achieving 99.9% system uptime.",
         "Engineered a robust role-based access control (RBAC) system for lock-in management and sensitive review timelines, leveraging JWT authentication, bcrypt password hashing, and modular MVC microservices design, ensuring data integrity and security across 8+ user privilege levels.",
         "Built an advanced automatic email reminder and real-time notification system using Gmail SMTP, Nodemailer, node-cron, and HTML email templates, automating lock-in periods, meetings, and feedback reminders, boosting compliance by 40% and increasing engagement.",
         "Enhanced user experience and business logic with features like Days Remaining Calculator, dynamic form builder, and automated workflow triggers, utilizing Sequelize migrations, raw SQL, and optimized queries for 60% faster API response times and 85% reduction in server storage costs via AWS S3 integration.",
@@ -138,6 +143,30 @@ export const resumeData = {
   ],
 
   projects: [
+    {
+      name: "AutoHunt - AI-Powered Autonomous Job Hunting Agent",
+      github: "https://github.com/kratikpal/auto_hunt",
+      technologies: [
+        "OpenClaw",
+        "GPT-4o",
+        "MCP",
+        "Python",
+        "Docker",
+        "SQLite",
+        "ClawHub Skills",
+      ],
+      description: [
+        "Designed and built an end-to-end autonomous job hunting agent using Model Context Protocol (MCP) with a custom Python sidecar, enabling seamless tool orchestration via AI-driven workflows.",
+        "Integrated OpenClaw control plane with 12+ modular AI skills (browser automation, email, search, vector DB), reducing manual job application effort by 90%+.",
+        "Engineered a multi-platform job scraping system using python-jobspy, enriching data with anti-bot scraping (Firecrawl, GhostFetch) and LLM-based scoring (GPT-4o-mini) to rank opportunities.",
+        "Developed LinkedIn Easy Apply automation pipeline using browser agents, dynamic form understanding, and RAG-based Q&A system (mc-kb + GPT-4o) to auto-fill applications.",
+        "Built an AI-powered outreach engine that identifies hiring managers, generates personalized cold emails, and sends them via Gmail APIs, increasing recruiter reach and response probability.",
+        "Designed a referral discovery system leveraging LinkedIn network ingestion and ranking logic to automate targeted referral requests.",
+        "Implemented a self-improving feedback loop using capability-evolution techniques to optimize job scoring and outreach strategies over time.",
+        "Architected a scalable microservices-style system with Docker, SQLite-based CRM, cron scheduling, and persistent memory for tracking application lifecycle.",
+        "Reduced job application time per role from 15+ minutes to <2 minutes, enabling a 5x increase in daily applications with higher relevance.",
+      ],
+    },
     {
       name: "Intelligent Job Application Automation System",
       technologies: [
